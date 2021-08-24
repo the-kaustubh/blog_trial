@@ -1,32 +1,33 @@
 <template>
   <div id='app'>
-    <BlogPost :currentPost="posts[currntPostId]"/>
-    <OtherPosts :AllPosts="posts" @gotopost="goToPost($event)"/>
+    <div class="routes">
+      <li>
+        <router-link to="/">Home</router-link>
+      </li>
+      <li>
+      <router-link to="/feed">Feed</router-link>
+      </li>
+    </div>
+    <router-view :currentPost="posts[currntPostId]" :AllPosts="posts" @gotopost="goToPost($event)"></router-view>
   </div>
 </template>
 
 <script>
 
-import BlogPost from './components/BlogPost.vue'
-import OtherPosts from './components/OtherPosts.vue'
+// import BlogPost from './components/BlogPost.vue'
+// import OtherPosts from './components/OtherPosts.vue'
 
 export default {
   name: 'App',
-  components: {
-    BlogPost,
-    OtherPosts
-  },
-  activated () {
-    alert('hello')
-  },
   methods: {
     goToPost (postID) {
       this.currntPostId = postID
+      this.$router.push({ name: 'BlogPost' })
     }
   },
   data () {
     return {
-      currntPostId: 0,
+      currntPostId: this.$route.params.id || 0,
       posts: [
         {
           id: '0',

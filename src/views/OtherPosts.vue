@@ -27,8 +27,7 @@ export default {
   width: 500px;
   height: 500px;
   padding: 10px;
-  margin-right: 100px;
-  float: right;
+  margin: auto;
 }
 
 li {
