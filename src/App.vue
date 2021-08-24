@@ -1,17 +1,59 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id='app'>
+    <BlogPost :currentPost="posts[currntPostId]"/>
+    <OtherPosts :AllPosts="posts" @gotopost="goToPost($event)"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import BlogPost from './components/BlogPost.vue'
+import OtherPosts from './components/OtherPosts.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    BlogPost,
+    OtherPosts
+  },
+  activated () {
+    alert('hello')
+  },
+  methods: {
+    goToPost (postID) {
+      this.currntPostId = postID
+    }
+  },
+  data () {
+    return {
+      currntPostId: 0,
+      posts: [
+        {
+          id: '0',
+          body: 'This is my first blog post',
+          user: 'kaustubh',
+          likes: 0
+        },
+        {
+          id: '1',
+          body: 'This is my second blog post',
+          user: 'kaustubh',
+          likes: 0
+        },
+        {
+          id: '2',
+          body: 'This is Vedant\'s first blog post',
+          user: 'vedant',
+          likes: 0
+        },
+        {
+          id: '3',
+          body: 'This is Rajiv\'s first blog post',
+          user: 'rajiv',
+          likes: 0
+        }
+      ]
+    }
   }
 }
 </script>
